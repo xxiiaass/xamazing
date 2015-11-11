@@ -2,8 +2,25 @@
 <html>
 <head>
 	<title>Amazing</title>
+	<link rel="stylesheet" type="text/css" href="/public/lib/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/less" href="/top/top.less">
 </head>
 <body>
 	<p>hello world</p>
 </body>
+
+<script src="/public/lib/seajs-3.0.0/dist/sea.js"></script>
+<script>
+	// Set configuration
+	seajs.config({
+		alias: {
+			"jquery":"/public/lib/jquery/jquery-seajs.js",
+			"jq-trans": "/public/lib/jquery/jquery-transision-seajs.js",
+			"bootstrap":"/public/lib/bootstrap/js/bootstrap-seajs.js",
+			"less":"/public/lib/less.js"
+		}
+	});
+	seajs.use("/top/top-main");
+</script>
+
 </html>
