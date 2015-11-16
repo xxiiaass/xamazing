@@ -23,5 +23,12 @@ router.get('/', function(req, res, next) {
 	})
 });
 
+
+router.get('/blog', (req, res, next)=>{
+	res.render('top/blog/blog.ejs');
+})
+
+
+
 module.exports = router;
 

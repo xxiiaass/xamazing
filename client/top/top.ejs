@@ -7,26 +7,28 @@
 </head>
 <body>
 	<%include ../public/header/header %>
-
+		
 	<section >
 		<div class="container">
 			<div class="row ">
-				<div class="col-sm-5 col-sm-offset-1 piclife">
+				<div class="col-sm-6 piclife flexbox main-around">
 					<% if (piclife) {%>
 						<% for(var m in piclife) {%>
-							<p><%= piclife[m].path%></p>
+						<a href="/"><div class="pic" style="background-image:url('<%= piclife[m].path%>')"></div></a>
 						<% } %>
 					<% } else { %>
 						<p>没有任何照片</p>
 					<% } %>
 				</div>
 
-				<div class="col-sm-6 blogs">
+				<div class="col-sm-6 blogs ">
 					<% if (blog) {%>
 					<% for(var i in blog) {%>
 						<div class="blog">
-							<div class="blogtitle"><strong><%= blog[i].title %></strong> <span class="author">write by <%= blog[i].author %></span> <span class=createtime>on <%= blog[i].createtime.toLocaleString() %></span></div>
-							<div class="blogcontent"><%= blog[i].content.substr(0, 60) %></div>
+							<a href="/">
+								<div class="blogtitle"><strong><%= blog[i].title %></strong> <span class="author">write by <%= blog[i].author %></span> <span class=createtime>on <%= blog[i].createtime.toLocaleString() %></span></div>
+								<div class="blogcontent"><%= blog[i].content.substr(0, 60) %></div>
+							</a>
 						</div>
 					<% } %>
 					<% } else { %>
