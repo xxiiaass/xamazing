@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Amazing</title>
+	<link rel="stylesheet" type="text/css" href="/public/lib/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/less" href="/top/blog/singleblog/singleblog.less">
+</head>
+<body>
+	<%include ../../../public/header/header %>
+	<section >
+		<div class="container">
+			<div class="row ">
+				<div class="col-sm-12 flexbox direc-col main-start secon-start">
+				<% if(blog) {%>
+					<div><strong class="title"><%= blog[0].title %></strong><span class="author">write by <%= blog[0].author %></span> <span class=createtime>on <%= blog[0].createtime.toLocaleString() %></span></div>
+					<pre class="content"><%-"     "+blog[0].content  %></pre>
+				<% } else {%>
+					<p>也许是你点击的时候姿势不对，没有找到文章</p>
+					<p>建议返回上个页面，换个姿势，再来一次</p>
+				<% } %>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+<script src="/public/lib/seajs-3.0.0/dist/sea.js"></script>
+<script>
+	// Set configuration
+	seajs.config({
+		alias: {
+			"jquery":"/public/lib/jquery/jquery-seajs.js",
+			"jq-trans": "/public/lib/jquery/jquery-transision-seajs.js",
+			"bootstrap":"/public/lib/bootstrap/js/bootstrap-seajs.js",
+			"less":"/public/lib/less.js"
+		}
+	});
+	seajs.use("/top/blog/singleblog/singleblog-main");
+</script>
+
+</html>

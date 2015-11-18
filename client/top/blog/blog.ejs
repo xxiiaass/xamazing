@@ -3,25 +3,14 @@
 <head>
 	<title>Amazing</title>
 	<link rel="stylesheet" type="text/css" href="/public/lib/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/less" href="/top/top.less">
+	<link rel="stylesheet" type="text/less" href="/top/blog/blog.less">
 </head>
 <body>
-	<%include ../public/header/header %>
-		
+	<%include ../../public/header/header %>
 	<section >
 		<div class="container">
 			<div class="row ">
-				<div class="col-sm-6 piclife flexbox main-around">
-					<% if (piclife) {%>
-						<% for(var m in piclife) {%>
-						<a href="/"><div class="pic" style="background-image:url(<%= (typeof piclife[m].path) == 'array' ? piclife[m].path[0]:piclife[m].path%>)"></div></a>
-						<% } %>
-					<% } else { %>
-						<p>没有任何照片</p>
-					<% } %>
-				</div>
-
-				<div class="col-sm-6 blogs ">
+				<div class="col-sm-12 flexbox direc-col main-start secon-start">
 					<% if (blog) {%>
 					<% for(var i in blog) {%>
 						<div class="blog">
@@ -38,7 +27,6 @@
 			</div>
 		</div>
 	</section>
-
 </body>
 
 <script src="/public/lib/seajs-3.0.0/dist/sea.js"></script>
@@ -52,7 +40,7 @@
 			"less":"/public/lib/less.js"
 		}
 	});
-	seajs.use("/top/top-main");
+	seajs.use("/top/blog/blog-main");
 </script>
 
 </html>

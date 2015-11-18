@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Amazing</title>
+	<link rel="stylesheet" type="text/css" href="/public/lib/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/less" href="/top/piclife/singlepic/singlepic.less">
+</head>
+<body>
+	<%include ../../../public/header/header %>
+	<section >
+		<div class="container">
+			<div class="row ">
+
+			</div>
+		</div>
+	</section>
+</body>
+
+<script src="/public/lib/seajs-3.0.0/dist/sea.js"></script>
+<script>
+	// Set configuration
+	seajs.config({
+		alias: {
+			"jquery":"/public/lib/jquery/jquery-seajs.js",
+			"jq-trans": "/public/lib/jquery/jquery-transision-seajs.js",
+			"bootstrap":"/public/lib/bootstrap/js/bootstrap-seajs.js",
+			"less":"/public/lib/less.js"
+		}
+	});
+	seajs.use("/top/piclife/singlepic/singlepic-main");
+</script>
+
+</html>

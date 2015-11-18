@@ -25,7 +25,7 @@ var piclife = new mongoose.Schema({
 	id:Number,
 	title: String,
 	content: String,
-	path:String,
+	path:Array,
 	createtime: { type: Date, default: new Date() },
 	author: { type: String, default: 'Kevin' }
 });

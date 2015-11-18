@@ -9,7 +9,14 @@ let Blogtxt = mongoose.model('Blogtxt');
 
 class Blog{
 	getblog(cond, callback) {
-		if( typeof cond == 'number' )
+		if( typeof cond == 'number' || typeof cond == 'string' ){
+			if(typeof cond == 'string'){
+				cond = parseInt(cond);
+				if( isNaN( cond ) ){
+					callback(null);
+					return ;
+				}
+			}
 			Blogtxt.find({'id':cond}, (err ,doc) =>{
 				if( err ){
 					logger.error(err);
@@ -23,6 +30,7 @@ class Blog{
 					});
 				}
 			});
+		}
 		else if( typeof cond == 'object' )
 			Blogtxt.find(cond, ( err, doc) =>{
 				if( err ){
