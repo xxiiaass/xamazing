@@ -42,6 +42,14 @@ router.get('/piclife', (req, res, next)=>{
 	})
 })
 
+router.get('/singlepic', (req, res, next)=>{
+	let urljson = url.parse(req.url, true).query;
+	piclife.getpiclife(urljson.picid, doc=>{
+		console.log(doc[0].path);
+		res.render('top/piclife/singlepic/singlepic.ejs', {'singlepic':doc});		
+	})
+})
+
 
 module.exports = router;
 

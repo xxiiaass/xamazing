@@ -11,7 +11,14 @@ var piclife = mongoose.model('Piclife');
 
 class Piclife{
 	getpiclife(cond, callback) {
-		if( typeof cond == 'number' )
+		if( typeof cond == 'number' || typeof cond == 'string' ){
+			if(typeof cond == 'string'){
+				cond = parseInt(cond);
+				if( isNaN( cond ) ){
+					callback(null);
+					return ;
+				}
+			}
 			piclife.find({'id':cond}, (err ,doc) =>{
 				if( err ){
 					logger.error(err);
@@ -25,7 +32,7 @@ class Piclife{
 					});
 				}
 			});
-		else if( typeof cond == 'object' )
+		}else if( typeof cond == 'object' )
 			piclife.find(cond, ( err, doc) =>{
 				if( err ){
 					logger.error(err);

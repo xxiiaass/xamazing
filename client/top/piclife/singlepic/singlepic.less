@@ -1,0 +1,53 @@
+@import "../../../public/flex.less";
+
+body{
+    background-color: @main-color;
+}
+
+.container{
+    #row-2{
+        a{
+            display: block;
+            width: 400px;
+            height: 350px;
+            img{
+                max-height: 100%;
+                max-width: 100%;
+                border-radius: 5px;
+            }
+        }
+
+    }
+    #row-1{
+        font-size: 20px;
+        color: white;
+        
+        &:after{
+            content: "点击查看大图";
+            color: black;
+            margin-top: 25px;
+            font-size: 15px;
+        }
+    }
+}
+
+
+.portfolio-modal {
+    .modal-content {
+        border-radius: 0;
+        background-clip: border-box;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border: none;
+        min-height: 100%;
+        padding: 0px;
+        text-align: center;
+            img {
+                    margin-bottom: 30px;
+                    cursor: pointer;
+            }
+            .item-details {
+                    margin: 30px 0;
+            }
+    }
+}

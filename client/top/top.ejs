@@ -3,7 +3,7 @@
 <head>
 	<title>Amazing</title>
 	<link rel="stylesheet" type="text/css" href="/public/lib/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/less" href="/top/top.less">
+	<link rel="stylesheet" type="text/less" href="/top/top.less"><!-- less-css -->
 </head>
 <body>
 	<%include ../public/header/header %>
@@ -14,7 +14,7 @@
 				<div class="col-sm-6 piclife flexbox main-around">
 					<% if (piclife) {%>
 						<% for(var m in piclife) {%>
-						<a href="/"><div class="pic" style="background-image:url(<%= (typeof piclife[m].path) == 'array' ? piclife[m].path[0]:piclife[m].path%>)"></div></a>
+						<a href="/singlepic?picid=<%= piclife[m].id %>"><div class="pic" style="background-image:url(<%= (typeof piclife[m].path) == 'array' ? piclife[m].path[0]:piclife[m].path%>)"></div></a>
 						<% } %>
 					<% } else { %>
 						<p>没有任何照片</p>
@@ -23,14 +23,14 @@
 
 				<div class="col-sm-6 blogs ">
 					<% if (blog) {%>
-					<% for(var i in blog) {%>
-						<div class="blog">
-							<a href="/singleblog?blogid=<%= blog[i].id %>">
-								<div class="blogtitle"><strong><%= blog[i].title %></strong> <span class="author">write by <%= blog[i].author %></span> <span class=createtime>on <%= blog[i].createtime.toLocaleString() %></span></div>
-								<div class="blogcontent"><%= blog[i].content.substr(0, 60) %></div>
-							</a>
-						</div>
-					<% } %>
+						<% for(var i in blog) {%>
+							<div class="blog">
+								<a href="/singleblog?blogid=<%= blog[i].id %>">
+									<div class="blogtitle"><strong><%= blog[i].title %></strong> <span class="author">write by <%= blog[i].author %></span> <span class=createtime>on <%= blog[i].createtime.toLocaleString() %></span></div>
+									<div class="blogcontent"><%= blog[i].content.substr(0, 60) %></div>
+								</a>
+							</div>
+						<% } %>
 					<% } else { %>
 						<p>没有任何文章</p>
 					<% } %>
