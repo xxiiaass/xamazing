@@ -8,7 +8,7 @@ var blogtxt = new mongoose.Schema({
 	id:Number,
 	title: String,
 	content: String,
-	createtime: { type: Date, default: new Date() },
+	createtime:{ type: Date, default: new Date() },
 	author: { type: String, default: 'Kevin' }
 });
 
