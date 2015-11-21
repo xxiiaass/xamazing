@@ -57,6 +57,8 @@ body {
   margin-left: 30px;
 }
 .container .content {
+  margin-top: 30px;
+  margin-bottom: 70px;
   font-size: 25px;
   background-color: #0199cb;
   border: none;

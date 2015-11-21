@@ -5,6 +5,7 @@ var router = express.Router();
 var blog= require('../server/centent/blog');
 var piclife = require('../server/centent/piclife');
 let url = require('url');
+var marked = require('marked');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -33,6 +34,7 @@ router.get('/blog', (req, res, next)=>{
 router.get('/singleblog', (req, res, next)=>{
 	let urljson = url.parse(req.url, true).query;
 	blog.getblog(urljson.blogid,{'format':'markdown'},doc=>{
+		doc[0].content = marked(doc[0].content);
 		res.render('top/blog/singleblog/singleblog.ejs', {'blog':doc});		
 	})
 })

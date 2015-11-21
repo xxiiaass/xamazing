@@ -1,6 +1,6 @@
 define(function(require, exports, module) {
 	require('bootstrap');
-	require('less');
+//	require('less');
 	var $ = require('jquery');
 
 

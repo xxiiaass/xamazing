@@ -14,7 +14,7 @@
 				<div class="col-sm-6 piclife flexbox main-around">
 					<% if (piclife) {%>
 						<% for(var m in piclife) {%>
-						<a href="/singlepic?picid=<%= piclife[m].id %>"><div class="pic" style="background-image:url(<%= (typeof piclife[m].path) == 'array' ? piclife[m].path[0]:piclife[m].path%>)"></div></a>
+						<a href="/singlepic?picid=<%= piclife[m].id %>"><div class="pic" style="background-image:url(<%= ( piclife[m].path instanceof Array)? piclife[m].path[0]:piclife[m].path%>)"></div></a>
 						<% } %>
 					<% } else { %>
 						<p>没有任何照片</p>

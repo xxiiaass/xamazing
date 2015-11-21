@@ -12,7 +12,7 @@
 			<div class="row flexbox main-around">
 			<% if(piclife) {%>
 				<% for(var j in piclife) {%>
-						<% var ele=((typeof piclife[j].path) == 'array' ? piclife[j].path[0] : piclife[j].path); %>
+						<% var ele=( ( piclife[j].path instanceof Array)? piclife[j].path[0] : piclife[j].path); %>
 						<a href="/singlepic?picid=<%= piclife[j].id %>"><div class="pic" style="background-image:url(<%= ele %>)"></div></a> 
 					<% if(j%3 == 2){%>
 						</div>
