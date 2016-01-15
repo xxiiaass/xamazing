@@ -1,0 +1,7 @@
+log/logs/*
+client/top/*.css
+public/footer/*.css
+public/header/*.css
+server/log/logs/*
+*.ampic
+*.amblog

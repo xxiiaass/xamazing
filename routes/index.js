@@ -2,68 +2,58 @@
 
 var express = require('express');
 var router = express.Router();
-var blog= require('../server/centent/blog');
-var piclife = require('../server/centent/piclife');
+var Blog = require('../server/content/blog');
+var Piclife = require('../server/content/pic')
 let url = require('url');
-var marked = require('marked');
 
-/* GET home page. */
+/* GET home page. */ 
 router.get('/', function(req, res, next) {
 	let guard = 0;
 	let blogs, pic;
-	piclife.getcurrentpic(3, doc=>{
+	Piclife.getCurrent(3).then(doc=>{
 		pic = doc;
 		if( ++guard == 2 )
-			res.render('top/top.ejs',{'blog':blogs, 'piclife':pic});
+			res.render('top/index.ejs',{'blog':blogs, 'piclife':pic, 'jspath':'/top/top-main.js'});
 	});
 
-	blog.getcurrentblog(4, doc=>{
+	Blog.getCurrent(4).then(doc=>{
 		blogs = doc;
-		console.log(blogs);
 		if( ++guard == 2 ) 
-			res.render('top/top.ejs',{'blog':blogs, 'piclife':pic});
+			res.render('top/index.ejs',{'blog':blogs, 'piclife':pic, 'jspath':'/top/top-main.js'});
 	})
 });
 
 router.get('/blog', (req, res, next)=>{
-	blog.getblog({}, doc=>{
-		res.render('top/blog/blog.ejs', {'blog':doc});
-	})
+	Blog.getRang(0, 10).then(doc=>{
+		res.render('top/blog/blog.ejs', {'blog':doc, 'jspath':'/top/blog/blog-main.js'});
+	});
 })
 
 router.get('/singleblog', (req, res, next)=>{
 	let urljson = url.parse(req.url, true).query;
-	blog.getblog(urljson.blogid,{'format':'markdown'},doc=>{
-		doc[0].content = marked(doc[0].content);
-		res.render('top/blog/singleblog/singleblog.ejs', {'blog':doc});		
+	if( /\D/.test(urljson.blogid)){
+		res.end();
+		return ;
+	}
+	Blog.getById(urljson.blogid).then(doc=>{
+		res.render('top/blog/singleblog/singleblog.ejs', {'blog':doc, 'jspath':'/top/blog/singleblog/singleblog-main.js'});		
 	})
 })
 
 router.get('/piclife', (req, res, next)=>{
-	piclife.getpiclife({}, doc=>{
-		res.render('top/piclife/piclife.ejs', {'piclife':doc});
-	})
+	Piclife.getCurrent(5).then(doc=>{
+		res.render('top/piclife/piclife.ejs', {'piclife':doc, 'jspath':'/top/piclife/piclife-main.js'});
+	});
 })
 
 router.get('/singlepic', (req, res, next)=>{
 	let urljson = url.parse(req.url, true).query;
-	piclife.getpiclife(urljson.picid, doc=>{
-		console.log(doc[0].path);
-		res.render('top/piclife/singlepic/singlepic.ejs', {'singlepic':doc});		
-	})
-})
-
-router.post('/pushblog',(req, res, next)=>{
-	let header = JSON.parse(req.body.header);
-	let cond = {
-		title:header.title,
-		content:req.body.content
-	};
-	console.log(cond);
-	let blogclass = blog.creatblog(cond);
-	blogclass.save(err=>{
-		if( !err )
-			res.send('ok');
+	if( /\D/.test(urljson.picid)){
+		res.end();
+		return ;
+	}
+	Piclife.getById(urljson.picid).then(doc=>{
+		res.render('top/piclife/singlepic/singlepic.ejs', {'singlepic':doc, 'jspath':'/top/piclife/singlepic/singlepic-main.js'});		
 	});
 })
 

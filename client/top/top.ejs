@@ -1,58 +1,147 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Amazing</title>
-	<link rel="stylesheet" type="text/css" href="/public/lib/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/top/top.css"><!-- less-css -->
-</head>
-<body>
-	<%include ../public/header/header %>
-		
-	<section >
-		<div class="container">
-			<div class="row ">
-				<div class="col-sm-6 piclife flexbox main-around">
-					<% if (piclife) {%>
-						<% for(var m in piclife) {%>
-						<a href="/singlepic?picid=<%= piclife[m].id %>"><div class="pic" style="background-image:url(<%= ( piclife[m].path instanceof Array)? piclife[m].path[0]:piclife[m].path%>)"></div></a>
-						<% } %>
-					<% } else { %>
-						<p>没有任何照片</p>
-					<% } %>
-				</div>
+<html lang="zh">
 
-				<div class="col-sm-6 blogs ">
-					<% if (blog) {%>
-						<% for(var i in blog) {%>
-							<div class="blog">
-								<a href="/singleblog?blogid=<%= blog[i].id %>">
-									<div class="blogtitle"><strong><%= blog[i].title %></strong> <span class="author">write by <%= blog[i].author %></span> <span class=createtime>on <%= blog[i].createtime.toLocaleString() %></span></div>
-									<div class="blogcontent"><%= blog[i].content.substr(0, 60) %></div>
-								</a>
-							</div>
-						<% } %>
-					<% } else { %>
-						<p>没有任何文章</p>
-					<% } %>
-				</div>
-			</div>
-		</div>
-	</section>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>AMAZING</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="/public/lib/bootstrap/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link href="/top/grayscale.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/public/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <%include ../public/header/header %>
+
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="brand-heading">Amazing</h1>
+                        <p class="intro-text">论，如何成为一个优雅的程序员</p>
+                        <a href="#blog" class="btn btn-circle page-scroll">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="blog" class="container content-section text-center">
+        <% if (blog) {%>
+            <div class="row text-left">
+                <div class="col-lg-3">
+                    <figure class="seclogo"><h1><i class="fa fa-pencil"></i>B</h1><h4>log</h4>
+                    <a href="/blog"><button class="btn btn-default btn-lg">More</button></a>
+                    </figure>
+                </div>
+                <div class="col-lg-7 ">
+                    <% for(var i in blog) {%>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <a href="/singleblog?blogid=<%= blog[i].id %>">
+                                <div class="blogtitle"><h3><%= blog[i].titlefunc() %></h3> <span class="author">write by <%= blog[i].authorfunc() %></span> <span class=createtime>on <%= blog[i].createtimefunc().toLocaleString() %></span></div>
+                                <p class="blogcontent"><%= blog[i].contentfunc().substr(0, 60) %> ...</p>
+                            </a>
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        <% } else { %>
+            <p>没有任何文章</p>
+        <% } %>
+        <a href="#download" class="btn btn-circle page-scroll">
+            <i class="fa fa-angle-double-down animated"></i>
+        </a>
+                    
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="content-section text-center ">
+        <div class="download-section">
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>若企及不到优雅，我也欲为逗逼，誓不与普通相伴</h2>
+                    <p>只为不浪费那上天赐予、独一无二的生命</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container content-section ">
+        <div class="row">
+            <div class="col-lg-3 text-left" >
+                <figure class="seclogo"><h1><i class="fa fa-camera"></i>P</h1><h4>ic</h4>
+                <a href="/piclife"><button class="btn btn-default btn-lg">More</button></a>
+                </figure>
+            </div>
+            <%var widthPer = 3;%>
+            <% if (piclife) {%>
+                <% for(var m in piclife) {%>
+                <div class="col-lg-<%= widthPer%> text-center ">
+                    <a href="/singlepic?picid=<%= piclife[m].idfunc() %>" data-toggle="tooltip" data-placement="top" title="<%= piclife[m].titlefunc() %>"><img class="img-circle pic" src="<%= piclife[m].pathfunc()[0]%>" /></a>
+                </div>
+                <% } %>
+            <% } else { %>
+                <p>没有任何照片</p>
+            <% } %>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <ul class="list-inline banner-social-buttons">
+                <li>
+                    <a href="http://weibo.com/danjina" class="btn btn-default btn-lg"><i class="fa fa-weibo"></i> <span class="network-name"> 微博 </span></a>
+                </li>
+                <li>
+                    <a href="https://github.com/KevinXiasx/xamazing" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                </li>
+            </ul>
+            <p>Copyright &copy; KevinXia</p>
+        </div>
+    </footer>
 
 </body>
-
 <script src="/public/lib/seajs-3.0.0/dist/sea.js"></script>
 <script>
-	// Set configuration
-	seajs.config({
-		alias: {
-			"jquery":"/public/lib/jquery/jquery-seajs.js",
-			"jq-trans": "/public/lib/jquery/jquery-transision-seajs.js",
-			"bootstrap":"/public/lib/bootstrap/js/bootstrap-seajs.js",
-			"less":"/public/lib/less.js"
-		}
-	});
-	seajs.use("/top/top-main");
+    // Set configuration
+    seajs.config({
+        alias: {
+            "jquery":"/public/lib/jquery/jquery-seajs.js",
+            "jq-trans": "/public/lib/jquery/jq-transision-seajs.js",
+            "bootstrap":"/public/lib/bootstrap/js/bootstrap-seajs.js",
+            "less":"/public/lib/less.js",
+            "easing":"/public/lib/jquery/jquery.easing.seajs.js",
+            "header":"/public/header/header-main"
+        }
+    });
+    seajs.use("/top/top-main");
 </script>
 
 </html>

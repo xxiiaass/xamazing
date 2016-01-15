@@ -1,0 +1,25 @@
+<script src="/public/lib/seajs-3.0.0/dist/sea.js"></script><!--deve-->
+
+<!--<script src="https://raw.githubusercontent.com/xxiiaass/MYCDN/master/public/javascripts/seajs-3.0.0/dist/sea.js" data-config="config/config.js" charset="utf-8"></script>product-->
+<script>
+    seajs.config({
+        alias: {
+ "jquery":"/public/lib/jquery/jquery-seajs.js", //deve
+ "jq-trans": "/public/lib/jquery/jq-transision-seajs.js",  //deve
+ "bootstrap":"/public/lib/bootstrap/js/bootstrap-seajs.js", //deve
+ "easing":"/public/lib/jquery/jquery.easing.seajs.js", //deve
+ "fittext":"/public/lib/jquery/jquery.fittext.seajs.js", //deve
+ "wow":"/public/lib/bootstrap/js/wow.seajs.js", //deve
+
+//"jquery":"https://raw.githubusercontent.com/xxiiaass/MYCDN/master/public/javascripts/jquery/jquery-seajs.js", //product
+//"jq-trans": "https://raw.githubusercontent.com/xxiiaass/MYCDN/master/public/javascripts/jquery/jq-transition-seajs.js",  //product
+//"bootstrap":"https://raw.githubusercontent.com/xxiiaass/MYCDN/master/public/stylesheets/bootstrap/js/bootstrap-seajs.js", //product
+//"easing":"https://raw.githubusercontent.com/xxiiaass/MYCDN/master/public/javascripts/jquery/jquery.easing.seajs.js", //product
+//"fittext":"https://raw.githubusercontent.com/xxiiaass/MYCDN/master/public/javascripts/jquery/jquery.fittext.seajs.js", //product
+//"wow":"https://raw.githubusercontent.com/xxiiaass/MYCDN/master/public/stylesheets/bootstrap/js/wow.seajs.js", //product
+
+            "header":"/public/header/header-main"
+        }
+    });
+    seajs.use("<%= jspath %>");
+</script>
