@@ -9,6 +9,8 @@ const assert = require('assert');
 const config = require('../../../config');
 const exec = require('child_process').exec;
 
+var fileTools = require('../../safe/fileTools');
+
 const size = "500x>";
 const minsize = "500x300";
 //const movetodir = path.join(__dirname, '../../../client/images/pushimg');
@@ -17,11 +19,8 @@ const minsize = "500x300";
 const movetodir = path.join(config.CDNpath,  'public/images/pushimg');
 const mindir = path.join(config.CDNpath, '/public/images/pushimg/min');
 
-if(!fs.existsSync(movetodir))
-	fs.mkdirSync(movetodir);
-if(!fs.existsSync(mindir))
-	fs.mkdirSync(mindir);
-
+fileTools.sureExistsSync(movetodir);
+fileTools.sureExistsSync(mindir);
 
 var toPro = function(...argus) {
     return new Promise(function(resolve, reject) {

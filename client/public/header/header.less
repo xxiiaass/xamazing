@@ -4,6 +4,7 @@
     text-transform: uppercase;
     font-family: "Montserrat", "Helvetica Neue", "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", "sans-serif";
     background-color: black;
+    z-index: 2000;
     .navbar-brand {
         font-weight: 700;
         &:focus {
@@ -64,8 +65,70 @@
             border-bottom: 1px solid fade(white, 30%);
         }
     }
+    .spinner {
+      width: 50px;
+      height: 100px;
+      max-height: 100%;
+      text-align: center;
+      font-size: 10px;
+      position: absolute;
+      left: 50%;
+      top: 0px;
+      z-index: 100;
+      -webkit-transform: translateX(-25px);
+      -moz-transform: translateX(-25px);
+      -o-transform: translateX(-25px);
+      transform: translateX(-25px);
+      opacity: 0;
+    }
+     
+    .spinner > div {
+      background-color: #55acee;
+      height: 100%;
+      width: 6px;
+      display: inline-block;
+       
+      -webkit-animation: stretchdelay 0.8s infinite ease-in-out;
+      animation: stretchdelay 0.8s infinite ease-in-out;
+    }
+
+    .spinner .rect2 {
+     -webkit-animation-delay: -0.1s;
+     animation-delay: -0.1s;
+    }
+
+    .spinner .rect3 {
+     -webkit-animation-delay: -0.2s;
+     animation-delay: -0.2s;
+    }
+
+    .spinner .rect4 {
+     -webkit-animation-delay: -0.3s;
+     animation-delay: -0.3s;
+    }
+
+    .spinner .rect5 {
+     -webkit-animation-delay: -0.4s;
+     animation-delay: -0.4s;
+    }
+     
+    @-webkit-keyframes stretchdelay {
+      0%, 100% { -webkit-transform: scaleY(0.4) } 
+      50% { -webkit-transform: scaleY(1.0) }
+    }
+     
+    @keyframes stretchdelay {
+      0%, 100% {
+        transform: scaleY(0.4);
+        -webkit-transform: scaleY(0.4);
+      }  50% {
+        transform: scaleY(1.0);
+        -webkit-transform: scaleY(1.0);
+      }
+    }
 }
 
 body {
     font-family: "Montserrat", "Helvetica Neue", "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", "sans-serif";
 }
+

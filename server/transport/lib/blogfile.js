@@ -5,13 +5,16 @@ var co = require('co');
 var FileWorker = require('./filework');
 var logger = require('log4js').getLogger("blogfile");
 var unam = require('./parsefile');
+var fileTools = require('../../safe/fileTools');
 
 const config = require('../../../config');
 const exec = require('child_process').exec;
-const movetodir = path.join(__dirname, '../amfiles');
 
-if(!fs.existsSync(movetodir))
-	fs.mkdirSync(movetodir);
+/*
+ * 这个文件夹会保存正确处理后的，以am*为后缀名的文件
+ */
+const movetodir = path.join(__dirname, '../amfiles');
+fileTools.sureExistsSync(movetodir);
 
 var toPro = function(...argus) {
     return new Promise(function(resolve, reject) {
@@ -28,6 +31,10 @@ class BlogFile extends FileWorker{
 		super(fromidFiles);
 	}
 
+
+/*
+ * 返回文本中，需要等待上传的图片文件的数组
+ */
 	waitWho(){
 		const self = this;
 		return new Promise((resolve, reject)=>{
@@ -58,6 +65,11 @@ class BlogFile extends FileWorker{
 		})
 	}
 
+/*
+ * 继承自filework的类都应该拥有的一个方法
+ *　在index.js文件中，会自动调用这个方法
+ * 文件从上传后开始处理的流程写在这个方法中
+ */
 	deal(){
 		const self = this;
 		return new Promise((resolve, reject)=>{
@@ -72,6 +84,11 @@ class BlogFile extends FileWorker{
 		})
 	}
 
+/*
+ * 开始等待需要上传的文件，同时发出一个信号，告诉先于自己上传的，需要的等待的图片文件
+ *　
+ *
+ */
 	begingWait(){
 		const self = this;
 		logger.info('begin listen');

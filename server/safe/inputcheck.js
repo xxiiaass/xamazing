@@ -1,7 +1,6 @@
 'use strict';
 
 
-
 class InputCheck{
 
 	isType(typeName) {

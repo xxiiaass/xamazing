@@ -7,14 +7,15 @@ var co = require('co');
 var unam = require('./lib/parsefile');
 var PicFile = require('./lib/picfile');
 var BlogFile = require('./lib/blogfile');
-
 var logger = require('log4js').getLogger("transport");
+var fileTools = require('../safe/fileTools');
 
-const savepath = path.join(__dirname, './files');
-
-const tmpdir = path.join(__dirname, './tmpfiles');
-if(!fs.existsSync(tmpdir))
-    fs.mkdirSync(tmpdir);
+/*
+ * 这个目录用于临时存放上传的文件
+ * 当文件后续处理及校验失败时，文件会滞留在这个文件夹
+*/
+const tmpdir = path.join(__dirname, './tmpfiles'); 
+fileTools.sureExistsSync(tmpdir);
 
 var toPro = function(...argus) {
     return new Promise(function(resolve, reject) {
@@ -25,6 +26,13 @@ var toPro = function(...argus) {
         func.apply(this, argus);
     });
 }
+
+/*
+ * 用于接受上传文件，根据文件后缀名，生成特定的类，进行文件的处理工作
+ * 文件后缀名是穷举的，需要手动添加新类型
+ *
+ * 参数为express中的req对象
+ */
 
 var recvfile = function(req){
     return new Promise((resolve, reject)=>{
@@ -52,6 +60,7 @@ var recvfile = function(req){
                         resolve(blogfile.deal());
                         break;
                     default:
+                        reject('file type err');
                         break;
                 }
             });

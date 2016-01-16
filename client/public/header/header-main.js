@@ -26,4 +26,15 @@ define(function(require, exports, module) {
         $('.navbar-toggle:visible').click();
     });
 
+    var loadingShow = function () {
+        $('.navbar .spinner').css('opacity', 1);
+    }
+
+    var loadingHide = function () {
+        $('.navbar .spinner').css('opacity', 0);
+    }
+
+    exports.loadingShow = loadingShow;
+    exports.loadingHide = loadingHide;
+
 });
