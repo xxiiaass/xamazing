@@ -1,6 +1,7 @@
 
 const config = {
-	"CDNpath":"/home/kevin/MYCDN/",
+
+	"CDNpath":"/home/kevin/project_c/CDN/",
 	"CNDpicbranch":"test"
 }
 

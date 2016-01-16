@@ -63,7 +63,7 @@ class Piclife{
 	}
 	pathLinkGithub(){
 		return this.path.map(x=>{
-			return x.replace(/^/, `https://raw.githubusercontent.com/xxiiaass/MYCDN/${config.CNDpicbranch}/public`);
+			return x.replace(/^/, `https://cdn.rawgit.com/xxiiaass/MYCDN/${config.CNDpicbranch}/public`);
 		})
 	}
 
@@ -79,7 +79,7 @@ class Piclife{
 		})
 
 		return tmp.map(x=>{
-			return x.replace(/^/, `https://raw.githubusercontent.com/xxiiaass/MYCDN/${config.CNDpicbranch}/public`);
+			return x.replace(/^/, `https://cdn.rawgit.com/xxiiaass/MYCDN/${config.CNDpicbranch}/public`);
 		})
 	}
 

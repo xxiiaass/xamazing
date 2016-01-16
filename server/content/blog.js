@@ -32,7 +32,7 @@ class Blog{
 	}
 
 	linktoGithubContent(){
-		return marked(this.content.replace(/(!\[.+\]\()(.*?\))/g, '$1https://raw.githubusercontent.com/xxiiaass/MYCDN/'+ config.CNDpicbranch +'/public$2'));
+		return marked(this.content.replace(/(!\[.+\]\()(.*?\))/g, '$1https://cdn.rawgit.com/xxiiaass/MYCDN/'+ config.CNDpicbranch +'/public$2'));
 	}
 	contentfunc(newcontent){
 		if(newcontent)
