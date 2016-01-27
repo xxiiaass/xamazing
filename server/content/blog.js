@@ -32,7 +32,8 @@ class Blog{
 	}
 
 	linktoGithubContent(){
-		return marked(this.content.replace(/(!\[.+\]\()(.*?\))/g, '$1https://cdn.rawgit.com/xxiiaass/MYCDN/'+ config.CNDpicbranch +'/public$2'));
+		var bigpic = marked(this.content.replace(/(!\[.+\]\()(.*?\))/g, '$1https://cdn.rawgit.com/xxiiaass/MYCDN/'+ config.CNDpicbranch +'/public$2'));
+		return bigpic.replace(/\/(?=[^\/]+\)/g, '/min/');
 	}
 	contentfunc(newcontent){
 		if(newcontent)
