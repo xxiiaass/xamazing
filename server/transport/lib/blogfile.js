@@ -137,8 +137,8 @@ class BlogFile extends FileWorker{
 					return ;
 				}
 				yield self.moveTo(movetodir, blog.title+self.oldAddr.ext);
-				if(self.waitArray.length > 0)
-				 	yield self.pushCDN();
+				//if(self.waitArray.length > 0)  //因为不需要链接到github上了，所以这两行代码注释
+				//	yield self.pushCDN();
 				logger.info('blog complete over');
 				resolve(true);
 			})

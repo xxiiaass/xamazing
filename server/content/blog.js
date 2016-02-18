@@ -32,8 +32,10 @@ class Blog{
 	}
 
 	linktoGithubContent(){
-		var bigpic = this.content.replace(/(!\[.+\]\()(.*?\))/g, '$1https://cdn.rawgit.com/xxiiaass/MYCDN/'+ config.CNDpicbranch +'/public$2');
-		return marked(bigpic.replace(/\/(?=[^\/]+?\))/g, '/min/'));
+		//var bigpic = this.content.replace(/(!\[.+\]\()(.*?\))/g, '$1https://cdn.rawgit.com/xxiiaass/MYCDN/'+ config.CNDpicbranch +'/public$2'); //不需要链接到github上，所以注释掉
+		//return marked(bigpic.replace(/\/(?=[^\/]+?\))/g, '/min/'));
+
+		return marked(this.content.replace(/\/(?=[^\/]+?\))/g, '/min/'));
 	}
 	contentfunc(newcontent){
 		if(newcontent)

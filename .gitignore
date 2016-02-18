@@ -5,3 +5,4 @@ public/header/*.css
 server/log/logs/*
 *.ampic
 *.amblog
+client/images/pushimg/*

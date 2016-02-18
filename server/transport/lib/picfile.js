@@ -13,11 +13,11 @@ var fileTools = require('../../safe/fileTools');
 
 const size = "500x>";
 const minsize = "500x300";
-//const movetodir = path.join(__dirname, '../../../client/images/pushimg');
-//const mindir = path.join(__dirname, '../../../client/images/pushimg/min');
+const movetodir = path.join(__dirname, '../../../client/images/pushimg');
+const mindir = path.join(__dirname, '../../../client/images/pushimg/min');
 
-const movetodir = path.join(config.CDNpath,  'public/images/pushimg');
-const mindir = path.join(config.CDNpath, '/public/images/pushimg/min');
+//const movetodir = path.join(config.CDNpath,  'public/images/pushimg');
+//const mindir = path.join(config.CDNpath, '/public/images/pushimg/min');
 
 fileTools.sureExistsSync(movetodir);
 fileTools.sureExistsSync(mindir);

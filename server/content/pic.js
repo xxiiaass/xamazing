@@ -62,9 +62,14 @@ class Piclife{
 			return this.path;
 	}
 	pathLinkGithub(){
-		return this.path.map(x=>{
+		//不需要链接到github所以注释
+/*		return this.path.map(x=>{
 			return x.replace(/^/, `https://cdn.rawgit.com/xxiiaass/MYCDN/${config.CNDpicbranch}/public`);
-		})
+		})*/
+		if(newpath)
+			this.path = newpath;
+		else
+			return this.path;
 	}
 
 	pathmin(){
@@ -74,12 +79,17 @@ class Piclife{
 	}
 
 	pathLinkGithubmin(){
-		var tmp = this.path.map(x=>{
+		//不需要链接到github所以注释
+/*		var tmp = this.path.map(x=>{
 			return x.replace(/\/(?=[^\/]+$)/, '/min/');
 		})
 
 		return tmp.map(x=>{
 			return x.replace(/^/, `https://cdn.rawgit.com/xxiiaass/MYCDN/${config.CNDpicbranch}/public`);
+		})*/
+
+		return this.path.map(x=>{
+			return x.replace(/\/(?=[^\/]+$)/, '/min/');
 		})
 	}
 
