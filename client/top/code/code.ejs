@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>code</title>
+
+    <link rel="stylesheet" type="text/css" href="/public/lib/bootstrap/css/bootstrap.min.css"><!--deve-->
+    <link href="/public/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"><!--deve-->
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">product-->
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">product-->
+
+    <link href="/top/code/clean-code.css" rel="stylesheet">
+</head>
+
+<body>
+   <%include ../../public/header/header %>
+
+    <header class="intro-header" style="background-image: url('/images/img/code.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>code</h1>
+                        <hr class="small">
+                        <span class="subheading">滴滴点点，日积硅步</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <div class="container allcontent">
+        <div class="row">
+            <div class="col-sm-2 paper menu-paper text-center">
+                <% for(var x of menus){ %>
+                    <div class="menu first-menu" id="<%= x.replace(/\//, '-')%>"><h4><%= x.match(/[^\/]+$/)[0] %></h4></div>
+                <%}%>
+            </div>
+            <div class="col-sm-9 col-sm-offset-1 paper mark-paper">
+                <div class="marklist">
+                    <div class="row text-center">
+                    </div>
+                    <hr>
+                    <div class="marktext"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Footer -->
+    <%include ../../public/footer/footer %>
+
+</body>
+    <%include ../../public/seajs %>
+</html>

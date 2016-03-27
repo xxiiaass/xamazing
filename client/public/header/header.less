@@ -87,9 +87,13 @@
       height: 100%;
       width: 6px;
       display: inline-block;
-       
       -webkit-animation: stretchdelay 0.8s infinite ease-in-out;
       animation: stretchdelay 0.8s infinite ease-in-out;
+    }
+    @media(max-width:768px){
+      .spinner > div {
+          opacity:0;
+        }
     }
 
     .spinner .rect2 {
