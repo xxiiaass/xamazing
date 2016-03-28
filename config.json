@@ -1,6 +1,5 @@
-
 {
-
 	"CDNpath":"/home/kevin/project_c/CDN/",
-	"CNDpicbranch":"test"
+	"CNDpicbranch":"test",
+	"mkdownpath":"mkdown"
 }

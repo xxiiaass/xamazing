@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var adminpush = require('./routes/adminpush');
+var coderoutes = require('./routes/code');
 
 var log4js = require('log4js');
 var loggers = log4js.getLogger('app');
@@ -35,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'client')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/adminpush', adminpush);
+app.use('/code', coderoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

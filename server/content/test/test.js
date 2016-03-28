@@ -2,7 +2,8 @@ var should = require('should');
 var Note = require('../note').Note;
 var MenuMark = require('../note').MenuMark;
 var ListMark = require('../note').ListMark;
-
+var checkInputPath = require('../note').checkInputPath;
+var checkOutPath = require('../note').checkOutPath;
 describe('note', function() {
   var note = new Note('./test.md');
   describe('#getTitle()', function () {
@@ -87,6 +88,27 @@ describe('Listmark', function  () {
                 result.should.lengthOf(7);
                 done();
             })
+        })
+    })
+})
+
+describe('checkpath', function  () {
+    var basepath = '/root/home/kevin/nihao/sdf';
+    describe('#checkInputPath', function () {
+        it('should return \'\' and ', function () {
+            var testargu1 = checkInputPath(basepath, '../hel/sss/');
+            testargu1.should.equal('')
+            var test2 = checkInputPath(basepath, '/hel/sss/s');
+            test2.should.be.a.String();
+            test2.should.equal('/root/home/kevin/nihao/sdf/hel/sss/s');
+        })
+    })
+
+
+    describe('#checkOutPath', function () {
+        it('should return', function () {
+            var test1 =  checkOutPath(basepath, '/root/home/kevin/nihao/sdf/sdfsdf/ddd');
+            test1.should.equal('/sdfsdf/ddd');
         })
     })
 })

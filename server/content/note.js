@@ -6,13 +6,13 @@ var Pathfunc = require('path');
 var logger = require('log4js').getLogger("note");
 var toPro = require('../safe/toPro');
 var co = require('co');
-
+var mkdownpath = require('../../config').mkdownpath;
 
 const isDirec = function(path){
 	return new Promise((resolve, reject)=>{
 		fs.stat(path, (err, stat)=>{
 			if(err){
-				logger.error(err);
+				logger.error(JSON.stringify(err));
 				resolve([path, false]);
 			}
 			else{
@@ -22,6 +22,23 @@ const isDirec = function(path){
 	})
 }
 
+var checkInputPath = function (basepath, path ) {
+	let targetPath = Pathfunc.join(basepath, path);
+	if(targetPath.startsWith(basepath))
+		return targetPath;
+	else
+		return '';
+}
+
+var checkOutPath = function ( basepath, path) {
+	if(Array.isArray(path)){
+		return path.map(x=>{
+			return x.substr(x.indexOf(basepath)+basepath.length);
+		})
+	}
+	else
+		return path.substr(path.indexOf(basepath)+basepath.length);
+}
 
 class Note {
 	constructor(path){
@@ -37,7 +54,7 @@ class Note {
 		return new Promise((resolve, reject)=>{
 			fs.stat(this.path, (err, stat)=>{
 				if(err){
-					logger.error(err);
+					logger.error(JSON.stringify(err));
 					resolve(null);
 				}
 				else
@@ -54,7 +71,7 @@ class Note {
 			else{
 				fs.readFile(self.path, (err, data)=>{
 					if(err){
-						logger.error(err);
+						logger.error(JSON.stringify(err));
 						resolve('');
 					}
 					else{
@@ -110,6 +127,7 @@ class ListMark{
 			let files = [];
 			co(function* () {
 				let paths = yield self.getPath(dir);
+				console.log('paths = ' +paths);
 				let files = yield Promise.all(paths.map(x=>{
 					return self.getMark(Pathfunc.join(dir, x));
 				}))
@@ -119,7 +137,6 @@ class ListMark{
 						filesarray.push(...x);
 					else
 						filesarray.push(x);
-
 				})
 				resolve(filesarray);
 			})
@@ -131,8 +148,9 @@ class ListMark{
 		return new Promise((resolve, reject)=>{
 			co(function* () {
 				let ret = yield toPro(dir, fs.readdir);
+				console.log(ret);
 				if(ret[0]){
-					logger.error(err);
+					logger.error(JSON.stringify(ret[0]));
 					resolve([]);
 				}else{
 					let result = [];
@@ -176,7 +194,7 @@ class MenuMark{
 			co(function* () {
 				var ret = yield toPro(self.dir, fs.readdir);
 				if(ret[0]){
-					logger.error(err);
+					logger.error(JSON.stringify(ret[0]));
 					resolve([]);
 				}else{
 					let result = [];
@@ -219,3 +237,5 @@ class MenuMark{
 exports.Note = Note;
 exports.MenuMark = MenuMark;
 exports.ListMark = ListMark;
+exports.checkInputPath = checkInputPath;
+exports.checkOutPath = checkOutPath;

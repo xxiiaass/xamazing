@@ -4,10 +4,8 @@ var express = require('express');
 var router = express.Router();
 var Blog = require('../server/content/blog');
 var Piclife = require('../server/content/pic')
-var MenuMark = require('../server/content/note').MenuMark;
-var ListMark = require('../server/content/note').ListMark;
-var Note = require('../server/content/note').Note;
 let url = require('url');
+let PathFunc = require('path');
 
 /* GET home page. */ 
 router.get('/', function(req, res) {
@@ -32,38 +30,6 @@ router.get('/blog', (req, res)=>{
 	});
 })
 
-router.get('/code', (req, res)=>{
-	var menumark = new MenuMark('./mkdown');
-	menumark.readDir().then(doc=>{
-		res.render('top/code/code.ejs', {'menus':doc, 'jspath':'/top/code/code-main.js'});
-	});
-})
-
-router.get('/code/getlist', (req, res)=>{
-	let urljson = url.parse(req.url, true).query;
-	var listmark = new ListMark(urljson.listname);
-	listmark.allMarkFile().then(doc=>{
-		res.send(doc);
-	});
-})
-
-router.get('/code/getfiletext', (req, res)=>{
-	let urljson = url.parse(req.url, true).query;
-	var note = new Note(urljson.filepath);
-	note.getMarkdown().then(doc=>{
-		console.log(doc);
-		res.send(doc);
-	});
-})
-
-router.get('/test', (req, res)=>{
-	var menumark = new MenuMark('./mkdown');
-	menumark.getList().then(doc=>{
-		return doc[3].allMarkNote();
-	}).then(doc=>{
-		console.log(doc);
-	})
-})
 
 
 router.get('/singleblog', (req, res)=>{
