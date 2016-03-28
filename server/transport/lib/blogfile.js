@@ -76,9 +76,9 @@ class BlogFile extends FileWorker{
 			co(function* () {
 				yield self.waitWho();
 				if(self.waitArray.length > 0)
-					self.begingWait();
+					yield self.begingWait();
 				else
-					self.contentComplete();
+					yield self.contentComplete();
 				resolve(true);
 			})
 		})
@@ -92,29 +92,35 @@ class BlogFile extends FileWorker{
 	begingWait(){
 		const self = this;
 		logger.info('begin listen');
-		self.callback = function (picfile) {
-			logger.info(`pic ${picfile.oldAddr.name} is come`);
-			var index = self.waitArray.findIndex(x=>{
-				return x === picfile.oldAddr.path;
-			});
-			if(!self.waitArray[index])
-				return ;
-			else{
-				var regext = new RegExp(`${self.waitArray[index]}`);
-				self.content = self.content.replace(regext, picfile.url);
-				picfile.fileComplete();
-				logger.info('reviect '+ picfile.oldAddr.name);
-				self.waitArray[index] = undefined;
-				if( !self.waitArray.find(x=>{return x}) ){
-					self.contentComplete();
-					self.removeListener('comepic', self.callback);
-					logger.info('blog callback over');
-				}
+		return new Promise((resolve, reject)=>{	
+			self.callback = function (picfile) {
+				co(function* () {
+					logger.info(`pic ${picfile.oldAddr.name} is come`);
+					var index = self.waitArray.findIndex(x=>{
+						return x === picfile.oldAddr.path;
+					});
+					if(!self.waitArray[index]){
+						return ;
+					}
+					else{
+						var regext = new RegExp(`${self.waitArray[index]}`);
+						self.content = self.content.replace(regext, picfile.url);
+						picfile.fileComplete();
+						logger.info('reviect '+ picfile.oldAddr.name);
+						self.waitArray[index] = undefined;
+						if( !self.waitArray.find(x=>{return x}) ){
+							yield self.contentComplete();
+							self.removeListener('comepic', self.callback);
+							logger.info('blog callback over');
+							resolve(true);
+						}
+					}
+				})
 			}
-		}
+			self.on('comepic', self.callback);
+			self.emit('comeblog');
+		})
 
-		self.on('comepic', self.callback);
-		self.emit('comeblog');
 	}
 
 	contentComplete(){
@@ -161,4 +167,4 @@ class BlogFile extends FileWorker{
 	}
 }
 
-module.exports = BlogFile;
+module.exports = BlogFile; 
