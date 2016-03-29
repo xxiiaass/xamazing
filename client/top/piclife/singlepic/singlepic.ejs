@@ -34,15 +34,15 @@
     <% if( singlepic[0].pathLinkGithubmin() instanceof Array ){ %>
         <% for(var i = 0; i < singlepic[0].pathLinkGithubmin().length; i++){%>
             <div class="col-md-3 portfolio-item text-center">
-                <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-                    <img class="img-responsive" src="<%= singlepic[0].pathLinkGithubmin()[i] %>" alt="">
+                <a href="#portfolioModal1" class="portfolio-link " data-toggle="modal">
+                    <img class="img-responsive lazy" data-original="<%= singlepic[0].pathLinkGithubmin()[i] %>" alt="" width="300" height="160">
                 </a>
             </div>
         <% } %>
     <% } else { %>
         <div class="col-md-3 portfolio-item ">
             <a href="#">
-                <img class="img-responsive" src="<%= singlepic[0].pathLinkGithubmin() %>" alt="">
+                <img class="img-responsive lazy"  data-original="<%= singlepic[0].pathLinkGithubmin() %>" alt="" width="300" height="160">
             </a>
         </div>
     <% } %>

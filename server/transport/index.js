@@ -47,7 +47,7 @@ var recvfile = function(req){
                 if (err)
                     reject(err);
                 var extname = path.extname(files.upload.path);
-                switch (extname) {
+                switch (extname.toLowerCase()) {
                     case '.png':
                     case '.jpg':
                         var picfile = new PicFile(files);

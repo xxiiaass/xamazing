@@ -92,7 +92,7 @@ class BlogFile extends FileWorker{
 	begingWait(){
 		const self = this;
 		logger.info('begin listen');
-		return new Promise((resolve, reject)=>{	
+		return new Promise((resolve, reject)=>{
 			self.callback = function (picfile) {
 				co(function* () {
 					logger.info(`pic ${picfile.oldAddr.name} is come`);
